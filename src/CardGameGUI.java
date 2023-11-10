@@ -3,6 +3,14 @@ import javax.swing.event.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * This class represents the graphical user interface (GUI) for a card game.
+ * It includes components like buttons, labels, and text fields to interact with the game logic.
+ *
+ * @author Liu Sizhe
+ * @version 1.0
+ * @since 2023-11-10
+ */
 public class CardGameGUI {
     private JFrame frame;
 
@@ -20,8 +28,11 @@ public class CardGameGUI {
 
     private final JOptionPane messageBox = new JOptionPane();
 
-    CardGameLogic cardGameLogic;
+    private CardGameLogic cardGameLogic;
 
+    /**
+     * Initializes and displays the GUI components of the card game.
+     */
     public void go() {
         cardGameLogic = new CardGameLogic();
 
@@ -119,6 +130,9 @@ public class CardGameGUI {
         frame.setVisible(true);
     }
 
+    /**
+     * Initializes the state of GUI components.
+     */
     private void componentsSateInit() {
         startButton.setEnabled(false);
         betInput.setEnabled(true);
@@ -133,22 +147,36 @@ public class CardGameGUI {
         }
     }
 
+    /**
+     * Updates the player card labels to show current cards.
+     */
     private void showPlayerCards() {
         for (int i = 0; i < 3; i++) {
             playerCardsLabels[i].setIcon(new ImageIcon(cardGameLogic.getPlayerCard(i).getCardFileName()));
         }
     }
 
+    /**
+     * Refreshes the display of a specific player card.
+     *
+     * @param cardIndex Index of the card to be refreshed.
+     */
     private void refreshPlayerCard(int cardIndex) {
         playerCardsLabels[cardIndex].setIcon(new ImageIcon(cardGameLogic.getPlayerCard(cardIndex).getCardFileName()));
     }
 
+    /**
+     * Updates the dealer card labels to show current cards.
+     */
     private void showDealerCards() {
         for (int i = 0; i < 3; i++) {
             dealerCardsLabels[i].setIcon(new ImageIcon(cardGameLogic.getDealerCard(i).getCardFileName()));
         }
     }
 
+    /**
+     * Inner class to handle 'Start' button click events.
+     */
     class startClicked implements ActionListener {
 
         @Override
@@ -165,6 +193,9 @@ public class CardGameGUI {
         }
     }
 
+    /**
+     * Inner class to handle 'Replace Card' button click events.
+     */
     class replaceCardClicked implements ActionListener {
 
         @Override
@@ -183,6 +214,9 @@ public class CardGameGUI {
         }
     }
 
+    /**
+     * Inner class to handle 'Result' button click events.
+     */
     class resultClicked implements ActionListener {
 
         @Override
@@ -204,6 +238,9 @@ public class CardGameGUI {
         }
     }
 
+    /**
+     * Inner class to handle changes in the bet input field.
+     */
     class betInputChanged implements DocumentListener {
 
         @Override
@@ -227,6 +264,9 @@ public class CardGameGUI {
         public void changedUpdate(DocumentEvent e) {}
     }
 
+    /**
+     * Inner class to handle 'Exit' menu item click events.
+     */
     class exitClicked implements ActionListener {
 
         @Override
@@ -235,6 +275,9 @@ public class CardGameGUI {
         }
     }
 
+    /**
+     * Inner class to handle 'Restart' menu item click events.
+     */
     class restartClicked implements ActionListener {
 
         @Override

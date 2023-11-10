@@ -7,29 +7,18 @@ public class CardGameGUI {
     private JFrame frame;
 
     private JLabel[] dealerCardsLabels, playerCardsLabels;
-    private JPanel dealerCardsPanel, playerCardsPanel;
 
     private static final ImageIcon cardBackIcon = new ImageIcon("Images/card_back.gif");
 
     private JButton[] replaceButtons;
-    private JPanel replaceButtonsPanel;
 
-    private JLabel betText;
     private JTextField betInput;
-    private JPanel betPanel;
 
     private JButton startButton, resultButton;
-    private JPanel startAndResultPanel;
 
     private JLabel importantMessage, moneyRemainMessage;
-    private JPanel messagesPanel;
 
-    private JOptionPane messageBox = new JOptionPane();
-
-    private JMenuBar menuBar;
-    private JMenu controlMenu;
-    private JMenuItem exitMenuItem, restartMenuItem;
-
+    private final JOptionPane messageBox = new JOptionPane();
 
     CardGameLogic cardGameLogic;
 
@@ -42,7 +31,7 @@ public class CardGameGUI {
         frame.setLayout(null);
 
         dealerCardsLabels = new JLabel[3];
-        dealerCardsPanel = new JPanel();
+        JPanel dealerCardsPanel = new JPanel();
         for (int i = 0; i < 3; i++) {
             dealerCardsLabels[i] = new JLabel();
             dealerCardsPanel.add(dealerCardsLabels[i]);
@@ -53,7 +42,7 @@ public class CardGameGUI {
                 (int)(frame.getHeight() * 0.05));
 
         playerCardsLabels = new JLabel[3];
-        playerCardsPanel = new JPanel();
+        JPanel playerCardsPanel = new JPanel();
         for (int i = 0; i < 3; i++) {
             playerCardsLabels[i] = new JLabel();
             playerCardsPanel.add(playerCardsLabels[i]);
@@ -64,7 +53,7 @@ public class CardGameGUI {
                 (int)(frame.getHeight() * 0.2));
 
         replaceButtons = new JButton[3];
-        replaceButtonsPanel = new JPanel();
+        JPanel replaceButtonsPanel = new JPanel();
         for (int i = 0; i < 3; i++) {
             replaceButtons[i] = new JButton(String.format("Replace Card %d", i + 1));
             replaceButtonsPanel.add(replaceButtons[i]);
@@ -75,10 +64,10 @@ public class CardGameGUI {
         replaceButtonsPanel.setLocation(frame.getWidth() / 2 - replaceButtonsPanel.getWidth() / 2,
                 (int)(frame.getHeight() * 0.4));
 
-        betText = new JLabel("Bet: $");
+        JLabel betText = new JLabel("Bet: $");
         betInput = new JTextField(5);
         betInput.getDocument().addDocumentListener(new betInputChanged());
-        betPanel = new JPanel();
+        JPanel betPanel = new JPanel();
         betPanel.add(betText);
         betPanel.add(betInput);
         betPanel.setLayout(new FlowLayout());
@@ -89,7 +78,7 @@ public class CardGameGUI {
         startButton.addActionListener(new startClicked());
         resultButton = new JButton("Result");
         resultButton.addActionListener(new resultClicked());
-        startAndResultPanel = new JPanel();
+        JPanel startAndResultPanel = new JPanel();
         startAndResultPanel.add(startButton);
         startAndResultPanel.add(resultButton);
         startAndResultPanel.setLayout(new FlowLayout());
@@ -99,7 +88,7 @@ public class CardGameGUI {
 
         importantMessage = new JLabel("Please place your bet!");
         moneyRemainMessage = new JLabel(String.format("Money you have: $%d", cardGameLogic.getMoneyRemain()));
-        messagesPanel = new JPanel();
+        JPanel messagesPanel = new JPanel();
         messagesPanel.add(importantMessage);
         messagesPanel.add(moneyRemainMessage);
         messagesPanel.setLayout(new BoxLayout(messagesPanel, BoxLayout.Y_AXIS));
@@ -107,12 +96,12 @@ public class CardGameGUI {
         messagesPanel.setLocation(frame.getWidth() / 2 - messagesPanel.getWidth() / 2,
                 (int)(frame.getHeight() * 0.75));
 
-        exitMenuItem = new JMenuItem("Exit");
+        JMenuItem exitMenuItem = new JMenuItem("Exit");
         exitMenuItem.addActionListener(new exitClicked());
-        restartMenuItem = new JMenuItem("Restart");
+        JMenuItem restartMenuItem = new JMenuItem("Restart");
         restartMenuItem.addActionListener(new restartClicked());
-        controlMenu = new JMenu("Control");
-        menuBar = new JMenuBar();
+        JMenu controlMenu = new JMenu("Control");
+        JMenuBar menuBar = new JMenuBar();
         controlMenu.add(exitMenuItem);
         controlMenu.add(restartMenuItem);
         menuBar.add(controlMenu);
